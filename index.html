@@ -3,355 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmood Official - Professional & Responsive</title>
+    <title>Rajput UC Store</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* --- CORE STYLES --- */
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+        :root {
+            --gold: #ffcc00;
+            --bg: #0a0b0c;
+            --card: rgba(255, 255, 255, 0.1);
+            --green: #2ecc71;
+            --red: #e74c3c;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        .main {
-            width: 100%;
+            font-family: 'Inter', sans-serif;
+            background: #0a0b0c;
+            background: radial-gradient(circle at center, #1a1c20 0%, #0a0b0c 100%);
+            color: white;
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                        url('https://i.postimg.cc/BvJfw8yF/IMG-20251207-WA0018.jpg') center/cover no-repeat;
-            background-attachment: fixed; /* Background stays still while scrolling */
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            width: 90%;
-            margin: 0 auto;
+        .container { width: 100%; max-width: 450px; }
+
+        header { text-align: center; margin-bottom: 20px; margin-top: 10px; }
+        .brand { font-family: 'Orbitron', sans-serif; color: var(--gold); font-size: 1.8rem; text-transform: uppercase; }
+
+        /* Loader Overlay */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: none;
+            flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
+        }
+        .spinner {
+            width: 50px; height: 50px; border: 5px solid var(--card);
+            border-top-color: var(--gold); border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Card */
+        .glass-card {
+            background: var(--card);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        /* --- NAVBAR --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            flex-wrap: wrap;
+        /* View Management */
+        .view { display: none; }
+        .active { display: block; }
+
+        .input-group { margin-bottom: 15px; }
+        label { display: block; color: var(--gold); font-size: 0.75rem; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+        input, select {
+            width: 100%; padding: 14px; background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+            color: white; font-size: 1rem; outline: none;
         }
 
-        .logo {
-            font-size: 35px;
-            font-weight: bold;
-            color: #fff;
+        .btn {
+            width: 100%; padding: 16px; border-radius: 10px; border: none;
+            font-family: 'Orbitron', sans-serif; font-weight: bold; cursor: pointer;
+            text-transform: uppercase; margin-top: 10px; font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .btn-main { background: linear-gradient(to right, #ffcc00, #ff9900); color: black; }
+        .btn-a { background: var(--green); color: white; }
+        .btn-b { background: var(--red); color: white; }
+        .btn:active { transform: scale(0.95); }
+
+        .info-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid var(--gold); }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+
+        .icon-big { font-size: 4rem; margin-bottom: 15px; display: block; text-align: center; }
+        .fail-msg {
+            background: rgba(231, 76, 60, 0.1); border: 1px dashed var(--red);
+            padding: 20px; border-radius: 10px; margin: 15px 0;
+            color: #ffcccc; text-align: center; font-size: 1rem; line-height: 1.4;
         }
 
-        .logo span {
-            color: #ff7200;
-        }
-
-        .menu ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .menu ul li {
-            margin-left: 30px;
-        }
-
-        .menu ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: 600;
-            font-size: 15px;
-            transition: 0.3s;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .menu ul li a:hover, .active-tab {
-            color: #ff7200 !important;
-        }
-
-        .search {
-            display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid #ff7200;
-        }
-
-        .search input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #fff;
-            padding: 10px;
-            width: 150px;
-        }
-
-        .search button {
-            background: #ff7200;
-            border: none;
-            color: #fff;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* --- CONTENT SECTIONS --- */
-        .page-content {
-            display: none; /* Hidden by default */
-            justify-content: space-between;
-            align-items: center;
-            min-height: 80vh;
-            padding: 50px 0;
-            gap: 40px;
-        }
-
-        /* Home Page Layout (Desktop) */
-        #home {
-            display: flex; 
-        }
-
-        .text {
-            flex: 1;
-        }
-
-        .text h1 {
-            font-size: 65px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .text span {
-            color: #ff7200;
-        }
-
-        .text p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .join-btn {
-            display: inline-block;
-            background: #ff7200;
-            color: #000;
-            padding: 15px 35px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .join-btn:hover {
-            background: #fff;
-            color: #ff7200;
-            transform: translateY(-3px);
-        }
-
-        /* --- LOGIN FORM --- */
-        .form {
-            width: 350px;
-            background: rgba(0,0,0,0.85);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 114, 0, 0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .form h2 {
-            text-align: center;
-            color: #ff7200;
-            background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 30px;
-            font-size: 22px;
-        }
-
-        .form input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #ff7200;
-            color: #fff;
-            padding: 12px 5px;
-            margin-bottom: 20px;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .form button {
-            width: 100%;
-            background: #ff7200;
-            border: none;
-            padding: 12px;
-            color: #000;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .form button:hover {
-            background: #fff;
-            color: #ff7200;
-        }
-
-        /* --- RESPONSIVE BREAKPOINTS (Mobile & Tablet) --- */
-        
-        @media (max-width: 992px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .menu ul li {
-                margin: 0 15px;
-            }
-            .page-content {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 20px;
-            }
-            .text h1 {
-                font-size: 45px;
-            }
-            .form {
-                width: 100%;
-                max-width: 400px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .logo { font-size: 28px; }
-            .menu ul { flex-wrap: wrap; justify-content: center; }
-            .menu ul li { margin: 5px 10px; }
-            .text h1 { font-size: 35px; }
-            .text p { font-size: 15px; }
-        }
+        footer { text-align: center; padding: 25px; font-size: 0.7rem; opacity: 0.4; }
     </style>
 </head>
 <body>
 
-<div class="main">
-    <div class="container">
-        
-        <!-- Navigation -->
-        <div class="navbar">
-            <div class="logo">Mah<span>mood</span></div>
-            <div class="menu">
-                <ul>
-                    <li><a href="javascript:void(0)" onclick="openTab('home', this)" class="active-tab">HOME</a></li>
-                    <li><a href="javascript:void(0)" onclick="openTab('about', this)">ABOUT</a></li>
-                    <li><a href="javascript:void(0)" onclick="openTab('service', this)">SERVICE</a></li>
-                    <li><a href="javascript:void(0)" onclick="openTab('design', this)">DESIGN</a></li>
-                    <li><a href="javascript:void(0)" onclick="openTab('contact', this)">CONTACT</a></li>
-                </ul>
-            </div>
-            <div class="search">
-                <input type="text" placeholder="Search...">
-                <button>Search</button>
-            </div>
-        </div>
-
-        <!-- Section: HOME -->
-        <div id="home" class="page-content">
-            <div class="text">
-                <h1>Web Design & <br><span>Development</span> Course</h1>
-                <p>Master professional website creation with Mahmood. We provide the best resources to help you build modern, responsive, and high-performing websites.</p>
-                <a class="join-btn" href="https://wa.me/923437996268" target="_blank">JOIN US</a>
-            </div>
-            <div class="form">
-                <h2>Login Here</h2>
-                <input type="email" id="emailInput" placeholder="Enter Email Here">
-                <input type="password" id="passInput" placeholder="Enter Password Here">
-                <button onclick="handleLogin()">Login</button>
-            </div>
-        </div>
-
-        <!-- Section: ABOUT -->
-        <div id="about" class="page-content">
-            <div class="text">
-                <h1>About <span>Mahmood</span></h1>
-                <p>We are a team of expert developers and designers dedicated to teaching and building professional digital solutions for clients worldwide.</p>
-            </div>
-        </div>
-
-        <!-- Section: SERVICE -->
-        <div id="service" class="page-content">
-            <div class="text">
-                <h1>Our <span>Services</span></h1>
-                <p>From UI/UX Design to Full-Stack Web Development and SEO, we cover everything you need to succeed in the digital era.</p>
-            </div>
-        </div>
-
-        <!-- Section: DESIGN -->
-        <div id="design" class="page-content">
-            <div class="text">
-                <h1>Modern <span>Design</span></h1>
-                <p>Explore our clean, minimal, and high-impact designs tailored to provide the best user experience on all devices.</p>
-            </div>
-        </div>
-
-        <!-- Section: CONTACT -->
-        <div id="contact" class="page-content">
-            <div class="text">
-                <h1>Contact <span>Us</span></h1>
-                <p>Email: info@mahmood.com <br> WhatsApp: +923437996268 <br> Feel free to reach out anytime!</p>
-            </div>
-        </div>
-
+    <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
     </div>
-</div>
 
-<script>
-    // Tab Switching Function
-    function openTab(pageId, element) {
-        var pages = document.getElementsByClassName("page-content");
-        for (var i = 0; i < pages.length; i++) {
-            pages[i].style.display = "none";
+    <div class="container">
+        <header><h1 class="brand">Rajput UC Store</h1></header>
+
+        <div class="glass-card">
+            
+            <!-- 1. HOME SCREEN -->
+            <div id="screen1" class="view active">
+                <div class="input-group">
+                    <label>Player Name</label>
+                    <input type="text" id="playerName" placeholder="Account Name">
+                </div>
+                <div class="input-group">
+                    <label>Player ID</label>
+                    <input type="number" id="playerId" placeholder="PUBG ID">
+                </div>
+                <div class="input-group">
+                    <label>UC</label>
+                    <select id="ucAmount">
+                        <option>60 UC</option><option>325 UC</option>
+                        <option>660 UC</option><option>1800 UC</option>
+                        <option>3850 UC</option><option>8100 UC</option>
+                    </select>
+                </div>
+                <!-- This button is calling the function directly -->
+                <button class="btn btn-main" onclick="onSendUCClick()">Send UC <i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+
+            <!-- 2. ADMIN CHOICE SCREEN -->
+            <div id="screen2" class="view">
+                <h3 style="text-align:center; margin-bottom:15px; font-family:'Orbitron'; color:var(--gold);">Verification</h3>
+                <div class="info-box">
+                    <div class="info-row"><span>Name:</span> <span id="outName" style="color:var(--gold)"></span></div>
+                    <div class="info-row"><span>ID:</span> <span id="outId"></span></div>
+                    <div class="info-row"><span>UC:</span> <span id="outPkg"></span></div>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <button class="btn btn-a" onclick="onOptionAClick()">Option A</button>
+                    <button class="btn btn-b" onclick="onOptionBClick()">Option B</button>
+                </div>
+            </div>
+
+            <!-- 3. SUCCESS VIEW -->
+            <div id="screen3" class="view" style="text-align:center;">
+                <i class="fa-solid fa-circle-check icon-big" style="color:var(--green)"></i>
+                <h2 style="color:var(--green); font-family:'Orbitron';">Sent!</h2>
+                <p style="margin-top:15px;">The UC has been successfully delivered to <strong><span id="finalName" style="color:var(--gold)"></span></strong>.</p>
+                <button class="btn btn-main" onclick="onResetApp()" style="margin-top:25px;">Start New</button>
+            </div>
+
+            <!-- 4. FAILURE VIEW -->
+            <div id="screen4" class="view" style="text-align:center;">
+                <i class="fa-solid fa-circle-xmark icon-big" style="color:var(--red)"></i>
+                <h2 style="color:var(--red); font-family:'Orbitron';">Error</h2>
+                <div class="fail-msg">
+                    This UC amount cannot be added to your account. You must send a larger amount.....
+                </div>
+                <button class="btn btn-main" onclick="onResetApp()">Try Again</button>
+            </div>
+
+        </div>
+
+        <footer>&copy; 2026 Rajput UC Store</footer>
+    </div>
+
+    <script>
+        // Simple function to hide all views and show only one
+        function showScreen(screenId) {
+            // Show loader
+            document.getElementById('loader').style.display = 'flex';
+            
+            setTimeout(() => {
+                // Hide loader
+                document.getElementById('loader').style.display = 'none';
+                
+                // Hide all views
+                const views = document.getElementsByClassName('view');
+                for (let i = 0; i < views.length; i++) {
+                    views[i].style.display = 'none';
+                }
+                
+                // Show the specific one
+                document.getElementById(screenId).style.display = 'block';
+            }, 700);
         }
-        var links = document.querySelectorAll(".menu ul li a");
-        links.forEach(function(link) {
-            link.classList.remove("active-tab");
-        });
-        document.getElementById(pageId).style.display = "flex";
-        element.classList.add("active-tab");
-    }
 
-    // Login and WhatsApp Notification Function
-    function handleLogin() {
-        var userEmail = document.getElementById("emailInput").value.trim();
-        var userPass = document.getElementById("passInput").value.trim();
+        // Click Logic for SEND UC
+        function onSendUCClick() {
+            const name = document.getElementById('playerName').value;
+            const id = document.getElementById('playerId').value;
+            const pkg = document.getElementById('ucAmount').value;
 
-        if (userEmail === "" || userPass === "") {
-            alert("Error: Please enter both Email and Password!");
-            return;
+            if (name === "" || id === "") {
+                alert("Please fill Name and ID!");
+                return;
+            }
+
+            // Fill data for verification screen
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outId').innerText = id;
+            document.getElementById('outPkg').innerText = pkg;
+
+            showScreen('screen2');
         }
 
-        if (!userEmail.includes("@") || !userEmail.includes(".")) {
-            alert("Error: Please enter a valid Email address!");
-            return;
+        // Click Logic for Option A
+        function onOptionAClick() {
+            const name = document.getElementById('playerName').value;
+            document.getElementById('finalName').innerText = name;
+            showScreen('screen3');
         }
 
-        var myNumber = "923437996268";
-        var message = "New User Login Attempt!%0A" + 
-                      "-----------------------%0A" +
-                      "Email: " + userEmail + "%0A" + 
-                      "Password: " + userPass;
+        // Click Logic for Option B
+        function onOptionBClick() {
+            showScreen('screen4');
+        }
 
-        alert("Login Successful! Sending details to WhatsApp...");
-        window.open("https://wa.me/" + myNumber + "?text=" + message, "_blank");
-    }
-</script>
-
+        // Reset everything to Home
+        function onResetApp() {
+            document.getElementById('playerName').value = "";
+            document.getElementById('playerId').value = "";
+            showScreen('screen1');
+        }
+    </script>
 </body>
 </html>
