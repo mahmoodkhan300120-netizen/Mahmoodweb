@@ -126,11 +126,7 @@ if ('serviceWorker' in navigator) {
                 </div>
                 <div class="input-group">
                     <label>UC</label>
-                    <select id="ucAmount">
-                        <option>60 UC</option><option>325 UC</option>
-                        <option>660 UC</option><option>1800 UC</option>
-                        <option>3850 UC</option><option>8100 UC</option>
-                    </select>
+                    <input type="number" id="ucAmount" placeholder="Enter UC Amount">
                 </div>
                 <!-- This button is calling the function directly -->
                 <button class="btn btn-main" onclick="onSendUCClick()">Send UC <i class="fa-solid fa-paper-plane"></i></button>
